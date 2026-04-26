@@ -334,6 +334,69 @@ h3 {
   gap: 16px;
 }
 
+.public-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(360px, 0.75fr);
+  gap: 16px;
+  align-items: start;
+}
+
+.public-intro {
+  min-height: 520px;
+  padding: 28px;
+  color: #eef5ef;
+  background: linear-gradient(145deg, #13221c, #214332);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+}
+
+.public-intro .eyebrow {
+  color: #c9d5ce;
+}
+
+.public-intro h2 {
+  max-width: 720px;
+  font-size: clamp(32px, 5vw, 58px);
+  line-height: 1;
+}
+
+.public-intro p {
+  max-width: 620px;
+  color: #d8e4dc;
+  line-height: 1.55;
+}
+
+.public-trust-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 28px;
+}
+
+.public-trust-grid article {
+  min-height: 135px;
+  padding: 14px;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+}
+
+.public-trust-grid strong,
+.public-trust-grid span {
+  display: block;
+}
+
+.public-trust-grid span {
+  margin-top: 8px;
+  color: #c9d5ce;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.public-result {
+  margin-top: 14px;
+}
+
 .panel {
   padding: 18px;
 }
@@ -715,7 +778,16 @@ textarea:focus {
 
   .content-grid,
   .split-layout,
+  .public-layout,
   .strategy-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .public-intro {
+    min-height: auto;
+  }
+
+  .public-trust-grid {
     grid-template-columns: 1fr;
   }
 }

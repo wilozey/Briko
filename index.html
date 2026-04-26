@@ -24,6 +24,7 @@
 
         <nav class="nav-list">
           <button class="nav-item active" data-view="command">Command</button>
+          <button class="nav-item" data-view="public">Public booking</button>
           <button class="nav-item" data-view="intake">Customer intake</button>
           <button class="nav-item" data-view="dispatch">Dispatch</button>
           <button class="nav-item" data-view="artisans">Artisans</button>
@@ -92,6 +93,78 @@
                 </div>
               </div>
               <div class="gap-list" id="gapList"></div>
+            </section>
+          </div>
+        </section>
+
+        <section class="view" id="public">
+          <div class="public-layout">
+            <section class="public-intro">
+              <p class="eyebrow">Customer-facing flow</p>
+              <h2>Get matched with a verified artisan in Abidjan</h2>
+              <p>
+                Briko captures the job, checks available supply, and follows up manually when an instant match is not strong enough.
+              </p>
+              <div class="public-trust-grid">
+                <article>
+                  <strong>Verified supply</strong>
+                  <span>ID, phone, service zone, and references tracked before promotion.</span>
+                </article>
+                <article>
+                  <strong>Clear follow-up</strong>
+                  <span>Every request becomes a job card with owner, status, quote, and timeline.</span>
+                </article>
+                <article>
+                  <strong>Human fallback</strong>
+                  <span>If no strong match exists, Briko handles callback and manual assignment.</span>
+                </article>
+              </div>
+            </section>
+            <section class="panel">
+              <div class="panel-head">
+                <div>
+                  <p class="eyebrow">Request help</p>
+                  <h2>Tell us what you need</h2>
+                </div>
+              </div>
+              <form id="publicRequestForm" class="form-grid">
+                <div class="field-row">
+                  <label>
+                    Name
+                    <input name="customer" required placeholder="Your name" />
+                  </label>
+                  <label>
+                    Phone or WhatsApp
+                    <input name="phone" required placeholder="+225 ..." />
+                  </label>
+                </div>
+                <div class="field-row">
+                  <label>
+                    Service
+                    <select name="service" required id="publicService"></select>
+                  </label>
+                  <label>
+                    Commune
+                    <select name="commune" required id="publicCommune"></select>
+                  </label>
+                </div>
+                <label>
+                  Urgency
+                  <select name="urgency" required>
+                    <option>Emergency</option>
+                    <option selected>Today</option>
+                    <option>This week</option>
+                    <option>Flexible</option>
+                  </select>
+                </label>
+                <label>
+                  What happened?
+                  <textarea name="problem" required placeholder="Describe the problem, where it is, and when it started."></textarea>
+                </label>
+                <input type="hidden" name="budget" value="Unknown" />
+                <button class="primary-action form-submit" type="submit">Request Briko help</button>
+              </form>
+              <div class="public-result" id="publicResult" aria-live="polite"></div>
             </section>
           </div>
         </section>

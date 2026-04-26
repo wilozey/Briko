@@ -25,3 +25,4 @@ http://localhost:4173
 - Browser fallback when opened directly from `index.html`.
 - Job workflow fields for quote, scheduled date, completion proof, notes, and timeline.
 - Artisan CSV import using `name,service,commune,verification,response,notes`.
+- Customer-facing public booking screen that creates tracked internal job cards.

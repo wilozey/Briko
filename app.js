@@ -308,6 +308,7 @@ function setView(viewName) {
   });
   const titles = {
     command: "Command center",
+    public: "Public booking",
     intake: "Customer intake",
     dispatch: "Dispatch board",
     artisans: "Artisan management",
@@ -329,6 +330,8 @@ function fillSelect(select, values, options = {}) {
 function setupSelects() {
   fillSelect(document.querySelector("#requestService"), SERVICES);
   fillSelect(document.querySelector("#requestCommune"), COMMUNES);
+  fillSelect(document.querySelector("#publicService"), SERVICES);
+  fillSelect(document.querySelector("#publicCommune"), COMMUNES);
   fillSelect(document.querySelector("#artisanService"), SERVICES);
   fillSelect(document.querySelector("#artisanCommune"), COMMUNES);
   fillSelect(document.querySelector("#artisanServiceFilter"), SERVICES, { allLabel: "All services" });
@@ -725,7 +728,21 @@ function createJob(form) {
   saveState();
   form.reset();
   renderAll();
-  setView("dispatch");
+  if (form.id === "publicRequestForm") {
+    const artisan = byId(best);
+    document.querySelector("#publicResult").innerHTML = `
+      <article class="match-card">
+        <div class="meta-line">
+          <span class="tag">${job.id}</span>
+          <span class="tag ${best ? "" : "gold"}">${best ? "Match suggested" : "Manual callback"}</span>
+        </div>
+        <strong>${best ? `We shortlisted ${artisan.name}` : "Briko will manually review this request"}</strong>
+        <p>${best ? `${artisan.service} in ${artisan.commune}. Our operator still confirms before dispatch.` : "No strong instant match was found, so this goes to the internal dispatch board."}</p>
+      </article>
+    `;
+  } else {
+    setView("dispatch");
+  }
   showToast(`${job.id} created${best ? " with a suggested match" : " for manual review"}`);
 }
 
@@ -841,6 +858,11 @@ document.querySelector("#requestForm").addEventListener("submit", (event) => {
   createJob(event.currentTarget);
 });
 
+document.querySelector("#publicRequestForm").addEventListener("submit", (event) => {
+  event.preventDefault();
+  createJob(event.currentTarget);
+});
+
 document.querySelector("#artisanForm").addEventListener("submit", (event) => {
   event.preventDefault();
   addArtisan(event.currentTarget);
@@ -852,6 +874,14 @@ document.querySelector("#requestService").addEventListener("change", () => {
 
 document.querySelector("#requestCommune").addEventListener("change", () => {
   renderMatches(document.querySelector("#requestService").value, document.querySelector("#requestCommune").value);
+});
+
+document.querySelector("#publicService").addEventListener("change", () => {
+  renderMatches(document.querySelector("#publicService").value, document.querySelector("#publicCommune").value);
+});
+
+document.querySelector("#publicCommune").addEventListener("change", () => {
+  renderMatches(document.querySelector("#publicService").value, document.querySelector("#publicCommune").value);
 });
 
 ["#jobServiceFilter", "#jobStatusFilter", "#artisanServiceFilter", "#artisanCommuneFilter"].forEach((selector) => {

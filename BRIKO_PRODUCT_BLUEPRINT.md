@@ -18,6 +18,7 @@ Current working features:
 - Local Node backend with health check and state persistence API.
 - Job timeline/history, quote, schedule, completion proof, and internal notes.
 - Bulk artisan CSV import for faster supply onboarding.
+- Public booking screen that submits into the same dispatch workflow.
 
 This is intentionally built as an operations-first MVP. It does not yet include real accounts, payments, SMS, WhatsApp sending, or production database storage.
 
