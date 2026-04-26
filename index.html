@@ -242,6 +242,14 @@
                 </label>
                 <button class="primary-action form-submit" type="submit">Add artisan</button>
               </form>
+              <div class="import-box">
+                <p class="eyebrow">Bulk import</p>
+                <label>
+                  Paste CSV rows
+                  <textarea id="artisanCsv" placeholder="name,service,commune,verification,response,notes"></textarea>
+                </label>
+                <button class="ghost-btn" type="button" data-action="import-artisans">Import artisans</button>
+              </div>
             </section>
           </div>
         </section>
@@ -338,10 +346,28 @@
             <select name="artisanId" id="editArtisan"></select>
           </label>
         </div>
+        <div class="field-row">
+          <label>
+            Quote
+            <input name="quote" placeholder="45,000 FCFA" />
+          </label>
+          <label>
+            Scheduled date
+            <input name="scheduledAt" type="datetime-local" />
+          </label>
+        </div>
+        <label>
+          Completion proof
+          <input name="completionProof" placeholder="Photo link, confirmation note, or receipt reference" />
+        </label>
         <label>
           Internal note
           <textarea name="note" placeholder="Follow-up, quote, or customer update"></textarea>
         </label>
+        <section class="timeline-box">
+          <p class="eyebrow">Timeline</p>
+          <div id="jobTimeline"></div>
+        </section>
         <div class="modal-actions">
           <button class="ghost-btn" value="cancel" type="button" data-action="close-modal">Cancel</button>
           <button class="primary-action" value="default">Save job</button>

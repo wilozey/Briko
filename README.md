@@ -23,4 +23,5 @@ http://localhost:4173
 - State API at `/api/state`.
 - JSON persistence in `data/briko-data.json`.
 - Browser fallback when opened directly from `index.html`.
-
+- Job workflow fields for quote, scheduled date, completion proof, notes, and timeline.
+- Artisan CSV import using `name,service,commune,verification,response,notes`.

@@ -16,6 +16,8 @@ Current working features:
 - Analytics for request funnel and category coverage.
 - Strategy screen with naming options and build roadmap.
 - Local Node backend with health check and state persistence API.
+- Job timeline/history, quote, schedule, completion proof, and internal notes.
+- Bulk artisan CSV import for faster supply onboarding.
 
 This is intentionally built as an operations-first MVP. It does not yet include real accounts, payments, SMS, WhatsApp sending, or production database storage.
 

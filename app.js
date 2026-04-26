@@ -234,9 +234,25 @@ function saveState() {
   }
 }
 
+function normalizeState() {
+  state.jobs.forEach((job) => {
+    job.quote ||= "";
+    job.scheduledAt ||= "";
+    job.completionProof ||= "";
+    job.timeline ||= [
+      {
+        at: job.createdAt || new Date().toISOString(),
+        label: "Job created",
+        detail: job.note || "Initial request captured."
+      }
+    ];
+  });
+}
+
 async function loadServerState() {
   if (location.protocol === "file:") {
     state = loadLocalState();
+    normalizeState();
     return;
   }
 
@@ -261,6 +277,7 @@ async function loadServerState() {
     state = loadLocalState();
     apiMode = false;
   }
+  normalizeState();
 }
 
 function initials(name) {
@@ -468,12 +485,38 @@ function renderJobCard(job) {
       <strong>${job.customer}</strong>
       <small>${job.service} - ${job.problem}</small>
       <small>${artisan ? `Assigned: ${artisan.name}` : "No artisan assigned"}</small>
+      ${job.quote ? `<small>Quote: ${job.quote}</small>` : ""}
+      ${job.scheduledAt ? `<small>Scheduled: ${formatDateTime(job.scheduledAt)}</small>` : ""}
       <div class="card-actions">
         <button class="small-btn primary" data-edit-job="${job.id}">Update</button>
         <button class="small-btn" data-next-status="${job.id}">Next</button>
       </div>
     </article>
   `;
+}
+
+function formatDateTime(value) {
+  if (!value) return "";
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return value;
+  return date.toLocaleString([], { dateStyle: "medium", timeStyle: "short" });
+}
+
+function toDateTimeLocal(value) {
+  if (!value) return "";
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return "";
+  const offset = date.getTimezoneOffset() * 60000;
+  return new Date(date.getTime() - offset).toISOString().slice(0, 16);
+}
+
+function addTimeline(job, label, detail) {
+  job.timeline ||= [];
+  job.timeline.unshift({
+    at: new Date().toISOString(),
+    label,
+    detail
+  });
 }
 
 function renderArtisans() {
@@ -624,7 +667,16 @@ function openJob(jobId) {
   els.jobEditForm.elements.id.value = job.id;
   els.jobEditForm.elements.status.value = job.status;
   els.jobEditForm.elements.artisanId.value = job.artisanId;
+  els.jobEditForm.elements.quote.value = job.quote || "";
+  els.jobEditForm.elements.scheduledAt.value = toDateTimeLocal(job.scheduledAt);
+  els.jobEditForm.elements.completionProof.value = job.completionProof || "";
   els.jobEditForm.elements.note.value = job.note || "";
+  document.querySelector("#jobTimeline").innerHTML = (job.timeline || []).map((item) => `
+    <article class="timeline-item">
+      <strong>${item.label}</strong>
+      <span>${formatDateTime(item.at)} - ${item.detail}</span>
+    </article>
+  `).join("") || `<article class="timeline-item"><strong>No timeline yet</strong><span>Save the job to start tracking changes.</span></article>`;
   document.querySelector("#modalJobTitle").textContent = `${job.id} - ${job.customer}`;
   els.jobDialog.showModal();
 }
@@ -633,7 +685,9 @@ function nextStatus(jobId) {
   const job = state.jobs.find((item) => item.id === jobId);
   if (!job) return;
   const index = STATUSES.indexOf(job.status);
+  const previous = job.status;
   job.status = STATUSES[Math.min(STATUSES.length - 1, index + 1)];
+  if (job.status !== previous) addTimeline(job, "Status changed", `${previous} -> ${job.status}`);
   saveState();
   renderAll();
   showToast(`${job.id} moved to ${job.status}`);
@@ -655,7 +709,17 @@ function createJob(form) {
     status: "New",
     artisanId: best,
     createdAt: new Date().toISOString(),
-    note: best ? "Auto-shortlisted from current supply." : "Manual callback needed."
+    quote: "",
+    scheduledAt: "",
+    completionProof: "",
+    note: best ? "Auto-shortlisted from current supply." : "Manual callback needed.",
+    timeline: [
+      {
+        at: new Date().toISOString(),
+        label: "Job created",
+        detail: best ? "Auto-shortlisted from current supply." : "Manual callback needed."
+      }
+    ]
   };
   state.jobs.unshift(job);
   saveState();
@@ -683,6 +747,43 @@ function addArtisan(form) {
   form.reset();
   renderAll();
   showToast("Artisan added to the directory");
+}
+
+function importArtisans() {
+  const input = document.querySelector("#artisanCsv");
+  const rows = input.value
+    .split(/\r?\n/)
+    .map((row) => row.trim())
+    .filter(Boolean);
+
+  let imported = 0;
+  rows.forEach((row) => {
+    const [name, service, commune, verification = "Imported", response = "30m", ...notes] = row.split(",").map((cell) => cell.trim());
+    if (!name || !SERVICES.includes(service) || !COMMUNES.includes(commune)) return;
+    state.artisans.unshift({
+      id: `art-${Date.now()}-${imported}`,
+      name,
+      service,
+      commune,
+      rating: 4.5,
+      jobsDone: 0,
+      verification,
+      response,
+      notes: notes.join(", ") || "Imported from CSV. Needs verification notes.",
+      active: true
+    });
+    imported += 1;
+  });
+
+  if (!imported) {
+    showToast("No valid rows imported. Use name,service,commune,verification,response,notes");
+    return;
+  }
+
+  input.value = "";
+  saveState();
+  renderAll();
+  showToast(`${imported} artisans imported`);
 }
 
 function toggleArtisan(id) {
@@ -717,6 +818,7 @@ function exportData() {
 
 function resetDemo() {
   state = structuredClone(seedState);
+  normalizeState();
   saveState();
   setupSelects();
   renderAll();
@@ -764,12 +866,14 @@ document.body.addEventListener("click", (event) => {
   const toggle = event.target.closest("[data-toggle-artisan]");
   const verify = event.target.closest("[data-verify-artisan]");
   const close = event.target.closest("[data-action='close-modal']");
+  const importButton = event.target.closest("[data-action='import-artisans']");
 
   if (editJob) openJob(editJob.dataset.editJob);
   if (next) nextStatus(next.dataset.nextStatus);
   if (toggle) toggleArtisan(toggle.dataset.toggleArtisan);
   if (verify) verifyArtisan(verify.dataset.verifyArtisan);
   if (close) els.jobDialog.close();
+  if (importButton) importArtisans();
 });
 
 els.jobEditForm.addEventListener("submit", (event) => {
@@ -777,9 +881,23 @@ els.jobEditForm.addEventListener("submit", (event) => {
   const data = Object.fromEntries(new FormData(event.currentTarget));
   const job = state.jobs.find((item) => item.id === data.id);
   if (job) {
+    const changes = [];
+    if (job.status !== data.status) changes.push(`status ${job.status} -> ${data.status}`);
+    if (job.artisanId !== data.artisanId) {
+      const nextArtisan = byId(data.artisanId);
+      changes.push(`artisan ${nextArtisan ? nextArtisan.name : "manual assignment"}`);
+    }
+    if ((job.quote || "") !== data.quote) changes.push(`quote ${data.quote || "cleared"}`);
+    if ((job.scheduledAt || "") !== data.scheduledAt) changes.push(`schedule ${data.scheduledAt || "cleared"}`);
+    if ((job.completionProof || "") !== data.completionProof) changes.push("completion proof updated");
     job.status = data.status;
     job.artisanId = data.artisanId;
+    job.quote = data.quote;
+    job.scheduledAt = data.scheduledAt ? new Date(data.scheduledAt).toISOString() : "";
+    job.completionProof = data.completionProof;
     job.note = data.note;
+    if (changes.length) addTimeline(job, "Job updated", changes.join("; "));
+    if (data.note) addTimeline(job, "Internal note", data.note);
     saveState();
     renderAll();
     showToast(`${job.id} updated`);
