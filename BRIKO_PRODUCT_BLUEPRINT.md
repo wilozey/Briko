@@ -2,25 +2,17 @@
 
 ## Built MVP In This Folder
 
-Open `index.html` to use the current local Briko Service OS build. It runs without a server and stores demo changes in browser local storage.
-
-For the backend-backed version, run the local server and open `http://localhost:4173`. The server stores data in `data/briko-data.json` through `/api/state`.
+Open `http://localhost:4173` to use the current Briko Dispatch Board V2 build.
 
 Current working features:
 
-- Command center with live metrics, attention jobs, and supply gaps.
-- Customer intake form that creates traceable job cards.
-- Dispatch board with status columns and editable job assignment.
-- Artisan directory with filters, add-artisan form, activation, and verification controls.
-- Trust queue for imported artisans, disputes, and unassigned jobs.
-- Analytics for request funnel and category coverage.
-- Strategy screen with naming options and build roadmap.
-- Local Node backend with health check and state persistence API.
-- Job timeline/history, quote, schedule, completion proof, and internal notes.
-- Bulk artisan CSV import for faster supply onboarding.
-- Public booking screen that submits into the same dispatch workflow.
+- React component dashboard.
+- Sidebar, top bar, dispatch kanban board, job detail panel, and KPI cards.
+- Clickable job cards that update the detail panel.
+- Static mock data stored separately in `src/mockData.js`.
+- Tailwind-styled premium Briko visual system.
 
-This is intentionally built as an operations-first MVP. It does not yet include real accounts, payments, SMS, WhatsApp sending, or production database storage.
+This is intentionally UI-first for the Dispatch Board V2 request. It does not yet include real accounts, payments, SMS, WhatsApp sending, or production database storage.
 
 ## Reviewed Direction
 

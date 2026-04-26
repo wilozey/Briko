@@ -1,6 +1,6 @@
-# Briko Service OS
+# Briko Dispatch Board V2
 
-Local operations-first MVP for Briko.
+Modern React dashboard for Briko, a home-service dispatch platform.
 
 ## Run
 
@@ -16,13 +16,28 @@ Then open:
 http://localhost:4173
 ```
 
-## What It Includes
+## UI Scope
 
-- Static frontend served by `server.js`.
-- Health check at `/api/health`.
-- State API at `/api/state`.
-- JSON persistence in `data/briko-data.json`.
-- Browser fallback when opened directly from `index.html`.
-- Job workflow fields for quote, scheduled date, completion proof, notes, and timeline.
-- Artisan CSV import using `name,service,commune,verification,response,notes`.
-- Customer-facing public booking screen that creates tracked internal job cards.
+- React ES-module frontend.
+- Tailwind CDN utility styling.
+- Lucide React icons.
+- Static mock dispatch data in `src/mockData.js`.
+- Component structure:
+  - `Sidebar`
+  - `TopBar`
+  - `DispatchBoard`
+  - `DispatchColumn`
+  - `JobCard`
+  - `JobDetailPanel`
+  - `KpiCard`
+
+## Current Features
+
+- Premium dark-green Briko sidebar.
+- Searchable dispatch board.
+- Five kanban columns: New, Contacted, Quoted, Scheduled, In progress.
+- Clickable job cards that update the right-side detail panel.
+- Urgency color states for emergency, today, scheduled, normal, and in progress.
+- Bottom KPI cards.
+- Responsive layout that stacks the detail panel under the board on smaller screens.
+
