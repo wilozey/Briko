@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Briko Service OS</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Briko navigation">
+        <header class="brand">
+          <div class="brand-mark">B</div>
+          <div>
+            <strong>Briko</strong>
+            <span>Service OS</span>
+          </div>
+        </header>
+
+        <button class="primary-action" data-action="open-request">
+          <span aria-hidden="true">+</span>
+          New job
+        </button>
+
+        <nav class="nav-list">
+          <button class="nav-item active" data-view="command">Command</button>
+          <button class="nav-item" data-view="intake">Customer intake</button>
+          <button class="nav-item" data-view="dispatch">Dispatch</button>
+          <button class="nav-item" data-view="artisans">Artisans</button>
+          <button class="nav-item" data-view="trust">Trust</button>
+          <button class="nav-item" data-view="analytics">Analytics</button>
+          <button class="nav-item" data-view="strategy">Strategy</button>
+        </nav>
+
+        <section class="sidebar-panel">
+          <p>Launch focus</p>
+          <strong>Abidjan core communes</strong>
+          <span>Cocody, Marcory, Yopougon, Plateau, Abobo</span>
+        </section>
+
+        <section class="sidebar-panel">
+          <p>Operating rule</p>
+          <strong>Route manually before automating</strong>
+          <span>Every promise shown to customers must be backed by tracked jobs.</span>
+        </section>
+
+        <footer class="operator-card">
+          <div class="avatar">WK</div>
+          <div>
+            <strong>Founder console</strong>
+            <span>Local MVP data</span>
+          </div>
+        </footer>
+      </aside>
+
+      <main class="workspace">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">Briko launch build</p>
+            <h1 id="viewTitle">Command center</h1>
+          </div>
+          <div class="top-actions">
+            <label class="search">
+              <span>Search</span>
+              <input id="globalSearch" type="search" placeholder="Job, artisan, category, commune" />
+            </label>
+            <button class="ghost-btn" data-action="export-data">Export</button>
+            <button class="ghost-btn" data-action="reset-demo">Reset</button>
+          </div>
+        </header>
+
+        <section class="view active" id="command">
+          <div class="metrics-grid" id="metricsGrid"></div>
+
+          <div class="content-grid">
+            <section class="panel">
+              <div class="panel-head">
+                <div>
+                  <p class="eyebrow">Live operations</p>
+                  <h2>Jobs needing attention</h2>
+                </div>
+                <button class="ghost-btn compact" data-view="dispatch">Open dispatch</button>
+              </div>
+              <div class="attention-list" id="attentionList"></div>
+            </section>
+
+            <section class="panel">
+              <div class="panel-head">
+                <div>
+                  <p class="eyebrow">Coverage</p>
+                  <h2>Supply gaps</h2>
+                </div>
+              </div>
+              <div class="gap-list" id="gapList"></div>
+            </section>
+          </div>
+        </section>
+
+        <section class="view" id="intake">
+          <div class="split-layout">
+            <section class="panel">
+              <div class="panel-head">
+                <div>
+                  <p class="eyebrow">Customer experience</p>
+                  <h2>Create a traceable job card</h2>
+                </div>
+                <span class="status-pill">Human fallback</span>
+              </div>
+              <form id="requestForm" class="form-grid">
+                <div class="field-row">
+                  <label>
+                    Customer name
+                    <input name="customer" required placeholder="Customer name" />
+                  </label>
+                  <label>
+                    Phone or WhatsApp
+                    <input name="phone" required placeholder="+225 ..." />
+                  </label>
+                </div>
+                <div class="field-row">
+                  <label>
+                    Service
+                    <select name="service" required id="requestService"></select>
+                  </label>
+                  <label>
+                    Commune
+                    <select name="commune" required id="requestCommune"></select>
+                  </label>
+                </div>
+                <div class="field-row">
+                  <label>
+                    Urgency
+                    <select name="urgency" required>
+                      <option>Emergency</option>
+                      <option selected>Today</option>
+                      <option>This week</option>
+                      <option>Flexible</option>
+                    </select>
+                  </label>
+                  <label>
+                    Budget range
+                    <select name="budget">
+                      <option>Unknown</option>
+                      <option>Under 25,000 FCFA</option>
+                      <option>25,000-75,000 FCFA</option>
+                      <option>75,000+ FCFA</option>
+                    </select>
+                  </label>
+                </div>
+                <label>
+                  Problem details
+                  <textarea name="problem" required placeholder="What happened, where is it, and what should Briko know?"></textarea>
+                </label>
+                <button class="primary-action form-submit" type="submit">Create job and suggest matches</button>
+              </form>
+            </section>
+
+            <section class="panel">
+              <div class="panel-head">
+                <div>
+                  <p class="eyebrow">Matching assistant</p>
+                  <h2>Suggested artisans</h2>
+                </div>
+              </div>
+              <div class="match-list" id="matchPreview"></div>
+            </section>
+          </div>
+        </section>
+
+        <section class="view" id="dispatch">
+          <section class="panel">
+            <div class="panel-head wrap">
+              <div>
+                <p class="eyebrow">Internal workflow</p>
+                <h2>Dispatch board</h2>
+              </div>
+              <div class="filters">
+                <select id="jobServiceFilter" aria-label="Filter jobs by service"></select>
+                <select id="jobStatusFilter" aria-label="Filter jobs by status"></select>
+              </div>
+            </div>
+            <div class="pipeline" id="pipeline"></div>
+          </section>
+        </section>
+
+        <section class="view" id="artisans">
+          <div class="split-layout">
+            <section class="panel">
+              <div class="panel-head wrap">
+                <div>
+                  <p class="eyebrow">Supply management</p>
+                  <h2>Artisan directory</h2>
+                </div>
+                <div class="filters">
+                  <select id="artisanServiceFilter" aria-label="Filter artisans by service"></select>
+                  <select id="artisanCommuneFilter" aria-label="Filter artisans by commune"></select>
+                </div>
+              </div>
+              <div class="artisan-grid" id="artisanGrid"></div>
+            </section>
+
+            <section class="panel">
+              <div class="panel-head">
+                <div>
+                  <p class="eyebrow">Admin CRUD</p>
+                  <h2>Add artisan</h2>
+                </div>
+              </div>
+              <form id="artisanForm" class="form-grid compact-form">
+                <label>
+                  Name
+                  <input name="name" required placeholder="Full name" />
+                </label>
+                <div class="field-row">
+                  <label>
+                    Service
+                    <select name="service" required id="artisanService"></select>
+                  </label>
+                  <label>
+                    Commune
+                    <select name="commune" required id="artisanCommune"></select>
+                  </label>
+                </div>
+                <div class="field-row">
+                  <label>
+                    Verification
+                    <select name="verification">
+                      <option>Imported</option>
+                      <option selected>Verified</option>
+                      <option>Certified</option>
+                      <option>Suspended</option>
+                    </select>
+                  </label>
+                  <label>
+                    Response time
+                    <input name="response" value="25m" />
+                  </label>
+                </div>
+                <label>
+                  Notes
+                  <textarea name="notes" required placeholder="Skills, service area, references"></textarea>
+                </label>
+                <button class="primary-action form-submit" type="submit">Add artisan</button>
+              </form>
+            </section>
+          </div>
+        </section>
+
+        <section class="view" id="trust">
+          <div class="content-grid">
+            <section class="panel">
+              <div class="panel-head">
+                <div>
+                  <p class="eyebrow">Trust operations</p>
+                  <h2>Verification queue</h2>
+                </div>
+              </div>
+              <div class="queue-list" id="trustQueue"></div>
+            </section>
+            <section class="panel">
+              <div class="panel-head">
+                <div>
+                  <p class="eyebrow">Customer claims</p>
+                  <h2>Promise checklist</h2>
+                </div>
+              </div>
+              <div class="checklist" id="promiseChecklist"></div>
+            </section>
+          </div>
+        </section>
+
+        <section class="view" id="analytics">
+          <div class="content-grid">
+            <section class="panel">
+              <div class="panel-head">
+                <div>
+                  <p class="eyebrow">Marketplace health</p>
+                  <h2>Funnel</h2>
+                </div>
+              </div>
+              <div class="funnel" id="funnel"></div>
+            </section>
+            <section class="panel">
+              <div class="panel-head">
+                <div>
+                  <p class="eyebrow">Category quality</p>
+                  <h2>Service coverage</h2>
+                </div>
+              </div>
+              <div class="coverage-bars" id="coverageBars"></div>
+            </section>
+          </div>
+        </section>
+
+        <section class="view" id="strategy">
+          <div class="strategy-grid">
+            <section class="panel">
+              <p class="eyebrow">Naming</p>
+              <h2>Brand options</h2>
+              <div class="name-list" id="nameList"></div>
+            </section>
+            <section class="panel">
+              <p class="eyebrow">Roadmap</p>
+              <h2>Build order</h2>
+              <div class="roadmap" id="roadmap"></div>
+            </section>
+            <section class="panel wide">
+              <p class="eyebrow">Product thesis</p>
+              <h2>Briko wins by making informal service work feel trackable and safe</h2>
+              <p class="strategy-copy">
+                The launch product should not try to be everything on day one. It should reliably capture demand,
+                route requests, verify supply, and record outcomes. AI, payments, subscriptions, and mobile apps
+                become safer after this loop works.
+              </p>
+            </section>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <dialog id="jobDialog" class="modal">
+      <form method="dialog" id="jobEditForm">
+        <div class="modal-head">
+          <div>
+            <p class="eyebrow">Job card</p>
+            <h2 id="modalJobTitle">Edit job</h2>
+          </div>
+          <button class="icon-btn" value="cancel" aria-label="Close">x</button>
+        </div>
+        <input type="hidden" name="id" />
+        <div class="field-row">
+          <label>
+            Status
+            <select name="status" id="editStatus"></select>
+          </label>
+          <label>
+            Assigned artisan
+            <select name="artisanId" id="editArtisan"></select>
+          </label>
+        </div>
+        <label>
+          Internal note
+          <textarea name="note" placeholder="Follow-up, quote, or customer update"></textarea>
+        </label>
+        <div class="modal-actions">
+          <button class="ghost-btn" value="cancel" type="button" data-action="close-modal">Cancel</button>
+          <button class="primary-action" value="default">Save job</button>
+        </div>
+      </form>
+    </dialog>
+
+    <div class="toast" id="toast" role="status"></div>
+    <script src="app.js"></script>
+  </body>
+</html>

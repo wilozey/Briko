@@ -1,0 +1,163 @@
+{
+  "artisans": [
+    {
+      "id": "art-1",
+      "name": "Koffi N'Guessan",
+      "service": "Plumbing",
+      "commune": "Cocody",
+      "rating": 4.8,
+      "jobsDone": 132,
+      "verification": "Certified",
+      "response": "12m",
+      "notes": "Leak repair, bathroom installs, water heaters, emergency callouts",
+      "active": true
+    },
+    {
+      "id": "art-2",
+      "name": "Awa Traore",
+      "service": "Electrical",
+      "commune": "Marcory",
+      "rating": 4.9,
+      "jobsDone": 96,
+      "verification": "Certified",
+      "response": "18m",
+      "notes": "Panels, sockets, lighting, appliance safety, office maintenance",
+      "active": true
+    },
+    {
+      "id": "art-3",
+      "name": "Moussa Coulibaly",
+      "service": "Air conditioning",
+      "commune": "Yopougon",
+      "rating": 4.7,
+      "jobsDone": 74,
+      "verification": "Verified",
+      "response": "25m",
+      "notes": "AC cleaning, gas refill, diagnosis, routine maintenance",
+      "active": true
+    },
+    {
+      "id": "art-4",
+      "name": "Nadia Konan",
+      "service": "Cleaning",
+      "commune": "Plateau",
+      "rating": 4.6,
+      "jobsDone": 58,
+      "verification": "Verified",
+      "response": "35m",
+      "notes": "Move-out cleaning, offices, post-renovation jobs",
+      "active": true
+    },
+    {
+      "id": "art-5",
+      "name": "Jean-Baptiste Seri",
+      "service": "Carpentry",
+      "commune": "Cocody",
+      "rating": 4.8,
+      "jobsDone": 81,
+      "verification": "Certified",
+      "response": "28m",
+      "notes": "Doors, wardrobes, kitchen repairs, custom shelving",
+      "active": true
+    },
+    {
+      "id": "art-6",
+      "name": "Fatou Bamba",
+      "service": "Electrical",
+      "commune": "Yopougon",
+      "rating": 4.5,
+      "jobsDone": 43,
+      "verification": "Imported",
+      "response": "42m",
+      "notes": "Small repairs, lighting, appliance checks. Needs ID verification.",
+      "active": true
+    }
+  ],
+  "jobs": [
+    {
+      "id": "BK-1042",
+      "customer": "Aminata K.",
+      "phone": "+225 0700000001",
+      "service": "Plumbing",
+      "commune": "Cocody",
+      "urgency": "Today",
+      "budget": "25,000-75,000 FCFA",
+      "problem": "Kitchen pipe leaking under the sink.",
+      "status": "New",
+      "artisanId": "art-1",
+      "createdAt": "2026-04-26T06:20:00.000Z",
+      "note": "Call customer before sending artisan."
+    },
+    {
+      "id": "BK-1041",
+      "customer": "Residence Plateau",
+      "phone": "+225 0700000002",
+      "service": "Air conditioning",
+      "commune": "Plateau",
+      "urgency": "This week",
+      "budget": "75,000+ FCFA",
+      "problem": "Office AC not cooling in meeting room.",
+      "status": "New",
+      "artisanId": "",
+      "createdAt": "2026-04-26T06:05:00.000Z",
+      "note": "No strong AC supply in Plateau yet."
+    },
+    {
+      "id": "BK-1039",
+      "customer": "Kone M.",
+      "phone": "+225 0700000003",
+      "service": "Electrical",
+      "commune": "Marcory",
+      "urgency": "Emergency",
+      "budget": "Unknown",
+      "problem": "Breaker trips every night.",
+      "status": "Contacted",
+      "artisanId": "art-2",
+      "createdAt": "2026-04-25T19:40:00.000Z",
+      "note": "Awa accepted. Waiting for quote."
+    },
+    {
+      "id": "BK-1036",
+      "customer": "Hotel Cocody",
+      "phone": "+225 0700000004",
+      "service": "Carpentry",
+      "commune": "Cocody",
+      "urgency": "This week",
+      "budget": "25,000-75,000 FCFA",
+      "problem": "Bedroom wardrobe doors need repair.",
+      "status": "Quoted",
+      "artisanId": "art-5",
+      "createdAt": "2026-04-25T15:30:00.000Z",
+      "note": "Quote sent: 45,000 FCFA."
+    },
+    {
+      "id": "BK-1034",
+      "customer": "Nadia S.",
+      "phone": "+225 0700000005",
+      "service": "Cleaning",
+      "commune": "Plateau",
+      "urgency": "Today",
+      "budget": "Under 25,000 FCFA",
+      "problem": "Post-renovation cleaning for small office.",
+      "status": "Scheduled",
+      "artisanId": "art-4",
+      "createdAt": "2026-04-25T10:20:00.000Z",
+      "note": "Scheduled for 16:00."
+    },
+    {
+      "id": "BK-1031",
+      "customer": "Yao Family",
+      "phone": "+225 0700000006",
+      "service": "Plumbing",
+      "commune": "Yopougon",
+      "urgency": "Today",
+      "budget": "Unknown",
+      "problem": "Water heater issue.",
+      "status": "Dispute",
+      "artisanId": "",
+      "createdAt": "2026-04-24T08:10:00.000Z",
+      "note": "Customer says issue returned after repair."
+    }
+  ],
+  "sequence": 1043
+}
