@@ -1,27 +1,27 @@
-# Briko Product Blueprint
+# Briko Services Product Blueprint
 
 ## Built MVP In This Folder
 
-Open `http://localhost:4173` to use the current Briko Dispatch Board V2 build.
+Open `http://localhost:4173` to use the current Briko Services Dispatch Board V2 build.
 
 Current working features:
 
 - React component dashboard.
-- Sidebar, top bar, dispatch kanban board, job detail panel, and KPI cards.
+- Sidebar, top bar, dispatch kanban board, job detail panel, KPI bar, strategy panel, and color swatches.
 - Clickable job cards that update the detail panel.
 - Static mock data stored separately in `src/mockData.js`.
-- Tailwind-styled premium Briko visual system.
+- Tailwind-styled premium Briko Services visual system.
 
 This is intentionally UI-first for the Dispatch Board V2 request. It does not yet include real accounts, payments, SMS, WhatsApp sending, or production database storage.
 
 ## Reviewed Direction
 
-Briko should launch first as a reliable service routing platform for Abidjan, then grow into a full marketplace. The strongest risk in the existing materials is not visual design. It is promising marketplace features before the operational loop is dependable.
+Briko Services should launch first as a reliable service routing platform for Abidjan, then grow into a full marketplace. The strongest risk in the existing materials is not visual design. It is promising marketplace features before the operational loop is dependable.
 
 The first dependable loop should be:
 
 1. Customer submits a structured request.
-2. Briko creates a traceable job card.
+2. Briko Services creates a traceable job card.
 3. Staff or matching logic shortlists verified artisans.
 4. Customer gets a clear next step through phone, WhatsApp, or dashboard.
 5. Job outcome, quote, completion proof, review, and dispute state are recorded.
@@ -41,7 +41,7 @@ The first dependable loop should be:
 
 - Use "estimated range" instead of "instant quote" until quote data is real.
 - Use "available now" only when availability is recently confirmed.
-- Use "Briko Guarantee" only for jobs booked and tracked through the platform.
+- Use "Briko Services Guarantee" only for jobs booked and tracked through the platform.
 - Do not show review counts unless every review is tied to a completed job.
 - Hide unsupported service categories until supply exists.
 
@@ -66,12 +66,12 @@ The first dependable loop should be:
 
 ## Naming Options
 
-- Briko: strong working name; short, memorable, construction-adjacent.
-- MainPro: clearer French-market signal around skilled hands and professionals.
-- FixiCI: more modern, repair-led, locally anchored to Cote d'Ivoire.
-- ProxiMains: warmer trust-led name, focused on nearby skilled help.
+- Briko Services: strongest current option; short, service-oriented, and broad enough for home services.
+- MainPro: clearer in French, with a more formal professional signal.
+- FixiCI: modern and repair-led, good for fast jobs but weaker for premium services.
+- ProxiMains: warmer and trust-led, but less direct.
 
-My recommendation is to keep Briko for now while testing demand. Rename only if customer interviews show confusion or weak trust.
+My recommendation is to keep Briko Services for now while testing demand. Rename only if customer interviews show confusion or weak trust.
 
 ## Initial Success Metrics
 
@@ -79,7 +79,8 @@ My recommendation is to keep Briko for now while testing demand. Rename only if 
 - Time from request to first human response.
 - Request-to-match success rate.
 - Artisan response rate.
-- Jobs completed through Briko.
+- Jobs completed through Briko Services.
 - Verified review percentage.
 - Dispute rate and resolution time.
 - Coverage gaps by commune and category.
+

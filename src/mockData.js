@@ -1,3 +1,17 @@
+export const brand = {
+  name: "Briko Services",
+  colors: [
+    { name: "Primary Green", hex: "#06261D" },
+    { name: "Briko Green", hex: "#2F7D57" },
+    { name: "Orange / Action", hex: "#F97316" },
+    { name: "Red / Emergency", hex: "#DC2626" },
+    { name: "Light Background", hex: "#FAF8F2" },
+    { name: "Card Border", hex: "#E5DED2" },
+    { name: "Text Primary", hex: "#0F172A" },
+    { name: "Text Secondary", hex: "#475569" }
+  ]
+};
+
 export const jobs = [
   {
     id: "BK-1042",
@@ -8,7 +22,7 @@ export const jobs = [
     commune: "Cocody",
     service: "Plumbing",
     assignment: "Unassigned",
-    action: "Assign ->",
+    action: "Assign",
     customer: "Aminata K.",
     phone: "+225 07 89 12 34 56",
     location: "Cocody, Abidjan",
@@ -26,7 +40,7 @@ export const jobs = [
     commune: "Plateau",
     service: "Air conditioning",
     assignment: "Unassigned",
-    action: "Assign ->",
+    action: "Assign",
     customer: "Residence Plateau",
     phone: "+225 07 65 40 22 18",
     location: "Plateau, Abidjan",
@@ -34,6 +48,24 @@ export const jobs = [
     created: "Today, 9:25 AM",
     description: "The meeting room AC is running, but the room stays warm.",
     attachments: "1 photo"
+  },
+  {
+    id: "BK-1040",
+    column: "New",
+    urgency: "Normal",
+    waiting: "",
+    title: "Light fixture not working",
+    commune: "Riviera",
+    service: "Electrical",
+    assignment: "Unassigned",
+    action: "Assign",
+    customer: "Riviera Residence",
+    phone: "+225 05 18 04 20 12",
+    location: "Riviera, Abidjan",
+    status: "Unassigned",
+    created: "Today, 10:05 AM",
+    description: "Ceiling light in corridor stopped working after bulb replacement.",
+    attachments: "No attachments"
   },
   {
     id: "BK-1039",
@@ -44,7 +76,7 @@ export const jobs = [
     commune: "Marcory",
     service: "Electrical",
     assignment: "Assigned to Awa Traore",
-    action: "Open ->",
+    action: "Open",
     customer: "Kone M.",
     phone: "+225 05 44 33 12 09",
     location: "Marcory, Abidjan",
@@ -54,6 +86,42 @@ export const jobs = [
     attachments: "No attachments"
   },
   {
+    id: "BK-1038",
+    column: "Contacted",
+    urgency: "Normal",
+    waiting: "2h waiting",
+    title: "Door lock broken",
+    commune: "Cocody",
+    service: "Carpentry",
+    assignment: "Assigned to Jean Seri",
+    action: "Open",
+    customer: "Mme Amani",
+    phone: "+225 01 21 44 65 88",
+    location: "Cocody, Abidjan",
+    status: "Contacted",
+    created: "Today, 8:15 AM",
+    description: "Main bedroom door lock is stuck and cannot close properly.",
+    attachments: "1 photo"
+  },
+  {
+    id: "BK-1037",
+    column: "Contacted",
+    urgency: "Today",
+    waiting: "1h waiting",
+    title: "Bathroom faucet keep dripping",
+    commune: "Yopougon",
+    service: "Plumbing",
+    assignment: "Assigned to Koffi A.",
+    action: "Open",
+    customer: "Yopougon Clinic",
+    phone: "+225 07 90 18 70 02",
+    location: "Yopougon, Abidjan",
+    status: "Contacted",
+    created: "Today, 9:40 AM",
+    description: "Bathroom faucet keeps dripping and staff cannot fully close it.",
+    attachments: "1 photo"
+  },
+  {
     id: "BK-1036",
     column: "Quoted",
     urgency: "Today",
@@ -61,8 +129,8 @@ export const jobs = [
     title: "Bedroom wardrobe doors need repair",
     commune: "Cocody",
     service: "Carpentry",
-    assignment: "Quoted • 450,000 FCFA",
-    action: "View quote ->",
+    assignment: "Quoted - 450,000 FCFA",
+    action: "View quote",
     customer: "Hotel Cocody",
     phone: "+225 01 90 43 22 00",
     location: "Cocody, Abidjan",
@@ -70,6 +138,24 @@ export const jobs = [
     created: "Yesterday, 4:35 PM",
     description: "Three bedroom wardrobe doors need hinge and alignment repair.",
     attachments: "4 photos"
+  },
+  {
+    id: "BK-1035",
+    column: "Quoted",
+    urgency: "Normal",
+    waiting: "",
+    title: "Painting touch-up (2 rooms)",
+    commune: "Riviera",
+    service: "Painting",
+    assignment: "Quoted - 250,000 FCFA",
+    action: "View quote",
+    customer: "Riviera Office",
+    phone: "+225 07 23 19 76 01",
+    location: "Riviera, Abidjan",
+    status: "Quoted",
+    created: "Yesterday, 11:25 AM",
+    description: "Two small rooms need paint touch-up after furniture movement.",
+    attachments: "3 photos"
   },
   {
     id: "BK-1034",
@@ -81,7 +167,7 @@ export const jobs = [
     service: "Cleaning",
     assignment: "Today, 2:00 PM",
     secondaryAssignment: "Assigned to Nadia Konan",
-    action: "Open ->",
+    action: "Open",
     customer: "Nadia S.",
     phone: "+225 07 33 80 19 40",
     location: "Plateau, Abidjan",
@@ -91,15 +177,15 @@ export const jobs = [
     attachments: "3 photos"
   },
   {
-    id: "BK-1031",
+    id: "BK-1033",
     column: "In progress",
     urgency: "In progress",
     waiting: "3h",
-    title: "AC not cooling",
+    title: "AC not cooling (living room)",
     commune: "Cocody",
     service: "Air conditioning",
     assignment: "Assigned to Koffi N.",
-    action: "Open ->",
+    action: "Open",
     customer: "Yao Family",
     phone: "+225 07 21 63 55 19",
     location: "Cocody, Abidjan",
@@ -107,21 +193,73 @@ export const jobs = [
     created: "Today, 7:50 AM",
     description: "Living room AC is blowing warm air after a power cut.",
     attachments: "1 photo"
+  },
+  {
+    id: "BK-1032",
+    column: "In progress",
+    urgency: "In progress",
+    waiting: "6h",
+    title: "Toilet flush not working",
+    commune: "Marcory",
+    service: "Plumbing",
+    assignment: "Assigned to Idrissa",
+    action: "Open",
+    customer: "Marcory Apartments",
+    phone: "+225 05 77 41 20 19",
+    location: "Marcory, Abidjan",
+    status: "In progress",
+    created: "Today, 5:40 AM",
+    description: "Toilet flush tank is not refilling after use.",
+    attachments: "2 photos"
+  },
+  {
+    id: "BK-1031",
+    column: "In progress",
+    urgency: "In progress",
+    waiting: "2h",
+    title: "Geyser not heating",
+    commune: "Cocody",
+    service: "Electrical",
+    assignment: "Assigned to Yao K.",
+    action: "Open",
+    customer: "Kouame Family",
+    phone: "+225 07 11 42 18 10",
+    location: "Cocody, Abidjan",
+    status: "In progress",
+    created: "Today, 8:20 AM",
+    description: "Water heater turns on but does not heat water.",
+    attachments: "No attachments"
   }
 ];
 
 export const columns = [
-  { name: "New", alert: "4 unassigned" },
-  { name: "Contacted", alert: "Oldest: 2h" },
-  { name: "Quoted", alert: "1 waiting" },
-  { name: "Scheduled", alert: "Today" },
-  { name: "In progress", alert: "1 delayed" }
+  { name: "New", alerts: ["4 unassigned", "Oldest: 2h"] },
+  { name: "Contacted", alerts: ["1 waiting", "Oldest: 5h"] },
+  { name: "Quoted", alerts: ["Oldest: 1d"] },
+  { name: "Scheduled", alerts: ["Today"] },
+  { name: "In progress", alerts: ["1 delayed", "Oldest: 3h"] }
 ];
 
 export const kpis = [
-  { label: "Open jobs", value: "16" },
-  { label: "Unassigned jobs", value: "7" },
-  { label: "Jobs stuck > 24h", value: "3" },
-  { label: "Match rate", value: "67%" },
-  { label: "Artisans active", value: "24 / 35" }
+  { label: "Open jobs", value: "16", detail: "4 more than yesterday", tone: "orange" },
+  { label: "Unassigned jobs", value: "7", detail: "Needs attention", tone: "red" },
+  { label: "Jobs stuck > 24h", value: "3", detail: "2 more than yesterday", tone: "red" },
+  { label: "Match rate", value: "67%", detail: "8% vs last 7 days", tone: "green" },
+  { label: "Artisans active", value: "24", detail: "Out of 35", tone: "blue" }
+];
+
+export const strategyItems = [
+  { title: "Global quick actions", detail: "Add a floating action button on mobile for instant actions like call, assign, and update status." },
+  { title: "Filters & saved views", detail: "Let dispatchers save filters such as Unassigned jobs and Emergency." },
+  { title: "Map view", detail: "Add a map toggle to visualize job locations and optimize routes." },
+  { title: "Job aging indicator", detail: "Show visual aging bars on cards for jobs waiting too long." },
+  { title: "SLA & performance", detail: "Add SLA targets and team performance widgets on the command center." },
+  { title: "AI suggested assignment", detail: "Suggest the best artisan based on location, skills, availability, and workload." }
+];
+
+export const designDecisions = [
+  "Light background for clarity and speed.",
+  "Orange as primary action color for urgency and quick decision-making.",
+  "Status system with clear color hierarchy.",
+  "Clean cards with one primary action only."
 ];

@@ -1,10 +1,11 @@
 import React, { useMemo, useState } from "https://esm.sh/react@18.3.1";
-import { jobs, columns, kpis } from "./mockData.js";
+import { jobs, columns, kpis, strategyItems, designDecisions, brand } from "./mockData.js";
 import { Sidebar } from "./components/Sidebar.js";
 import { TopBar } from "./components/TopBar.js";
 import { DispatchBoard } from "./components/DispatchBoard.js";
 import { JobDetailPanel } from "./components/JobDetailPanel.js";
-import { KpiCard } from "./components/KpiCard.js";
+import { KpiBar } from "./components/KpiBar.js";
+import { StrategyPanel } from "./components/StrategyPanel.js";
 
 const h = React.createElement;
 
@@ -25,7 +26,7 @@ export function App() {
 
   return h(
     "div",
-    { className: "min-h-screen bg-brikoCream text-brikoDeep" },
+    { className: "min-h-screen bg-brikoCream text-brikoText" },
     h(
       "div",
       { className: "grid min-h-screen lg:grid-cols-[280px_minmax(0,1fr)]" },
@@ -45,11 +46,8 @@ export function App() {
           }),
           h(JobDetailPanel, { job: selectedJob })
         ),
-        h(
-          "section",
-          { className: "mt-4 grid gap-3 sm:grid-cols-2 xl:grid-cols-5" },
-          kpis.map((kpi) => h(KpiCard, { key: kpi.label, ...kpi }))
-        )
+        h(KpiBar, { kpis }),
+        h(StrategyPanel, { items: strategyItems, decisions: designDecisions, colors: brand.colors })
       )
     )
   );
