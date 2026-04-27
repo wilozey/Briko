@@ -7,7 +7,6 @@ import {
   ClipboardList,
   Gauge,
   ShieldCheck,
-  Sparkles,
   UsersRound
 } from "https://esm.sh/lucide-react@0.468.0";
 
@@ -44,11 +43,15 @@ const groups = [
   }
 ];
 
-function BrikoMark() {
+function BrandLogo() {
   return h(
     "div",
-    { className: "grid h-12 w-12 place-items-center rounded-[18px] border-2 border-brikoOrange text-brikoOrange" },
-    h("div", { className: "text-2xl font-black leading-none" }, "B")
+    { className: "flex items-center px-1" },
+    h("img", {
+      src: "/public/assets/briko-services-logo.png",
+      alt: "Briko Services",
+      className: "h-14 w-auto max-w-[180px] object-contain drop-shadow-[0_8px_18px_rgba(0,0,0,0.28)]"
+    })
   );
 }
 
@@ -59,12 +62,7 @@ export function Sidebar() {
       className:
         "hidden border-r border-white/10 bg-brikoDeep px-4 py-5 text-white lg:flex lg:min-h-screen lg:flex-col"
     },
-    h(
-      "div",
-      { className: "flex items-center gap-3 px-1" },
-      h(BrikoMark),
-      h("div", null, h("div", { className: "text-[21px] font-black leading-tight" }, "Briko Services"))
-    ),
+    h(BrandLogo),
     h(
       "nav",
       { className: "mt-8 space-y-7" },

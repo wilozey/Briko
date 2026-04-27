@@ -36,6 +36,7 @@ http://localhost:4173
 ## Current Features
 
 - Premium dark-green Briko Services sidebar.
+- Supplied Briko Services logo asset in `public/assets/briko-services-logo.png`.
 - Searchable dispatch board.
 - Five kanban columns: New, Contacted, Quoted, Scheduled, In progress.
 - Clickable job cards that update the right-side detail panel.
@@ -43,4 +44,3 @@ http://localhost:4173
 - Bottom KPI cards.
 - Compact strategy, design decisions, and color system panels.
 - Responsive layout that stacks the detail panel under the board on smaller screens.
-

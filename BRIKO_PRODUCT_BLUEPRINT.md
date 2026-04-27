@@ -8,6 +8,7 @@ Current working features:
 
 - React component dashboard.
 - Sidebar, top bar, dispatch kanban board, job detail panel, KPI bar, strategy panel, and color swatches.
+- Supplied Briko Services logo asset used in the sidebar.
 - Clickable job cards that update the detail panel.
 - Static mock data stored separately in `src/mockData.js`.
 - Tailwind-styled premium Briko Services visual system.
@@ -83,4 +84,3 @@ My recommendation is to keep Briko Services for now while testing demand. Rename
 - Verified review percentage.
 - Dispute rate and resolution time.
 - Coverage gaps by commune and category.
-
