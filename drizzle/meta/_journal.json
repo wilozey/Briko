@@ -1,0 +1,48 @@
+{
+  "version": "7",
+  "dialect": "mysql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1775265472589,
+      "tag": "0000_red_jackpot",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1775266066303,
+      "tag": "0001_slippery_phantom_reporter",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1775352148284,
+      "tag": "0002_far_kitty_pryde",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "5",
+      "when": 1775354702057,
+      "tag": "0003_giant_raider",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "5",
+      "when": 1777914645780,
+      "tag": "0004_conscious_rogue",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "5",
+      "when": 1777918772491,
+      "tag": "0005_friendly_mother_askani",
+      "breakpoints": true
+    }
+  ]
+}
