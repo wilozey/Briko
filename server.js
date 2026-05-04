@@ -74,7 +74,13 @@ async function handleApi(request, response) {
 
 async function serveStatic(request, response) {
   const url = new URL(request.url || "/", `http://${request.headers.host}`);
-  const pathname = decodeURIComponent(url.pathname === "/" ? "/index.html" : url.pathname);
+  const staticPath =
+    url.pathname === "/plantinel/"
+      ? "/public/plantinel/index.html"
+      : url.pathname.startsWith("/plantinel/")
+        ? `/public${url.pathname}`
+        : url.pathname;
+  const pathname = decodeURIComponent(staticPath === "/" ? "/index.html" : staticPath);
   const requested = normalize(join(root, pathname));
 
   if (!requested.startsWith(root)) {

@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Plantinel The Apothecary</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="brand-panel" aria-label="Plantinel brand">
+        <div class="logo-mark">
+          <span></span>
+        </div>
+        <h1>Plantinel</h1>
+        <p>The Apothecary</p>
+        <ul>
+          <li>Identify plants</li>
+          <li>Create plant cards</li>
+          <li>Discover remedies</li>
+          <li>Track your wellness</li>
+        </ul>
+      </section>
+
+      <section class="phone-frame" aria-label="Plantinel app preview">
+        <header class="phone-header">
+          <div>
+            <p class="eyebrow">Hello, founder</p>
+            <h2>What plant knowledge do you want to capture?</h2>
+          </div>
+          <button class="icon-button" type="button" aria-label="Notifications">!</button>
+        </header>
+
+        <nav class="top-actions" aria-label="Primary actions">
+          <button class="quick-action active" type="button" data-tab="home">
+            <span>⌂</span>
+            Home
+          </button>
+          <button class="quick-action" type="button" data-tab="library">
+            <span>#</span>
+            Library
+          </button>
+          <button class="quick-action" type="button" data-tab="remedies">
+            <span>*</span>
+            Remedies
+          </button>
+        </nav>
+
+        <section id="home" class="tab active">
+          <div class="home-hero-card">
+            <p class="eyebrow">Plantinel — The Apothecary</p>
+            <h3>Discover the Wisdom of Plants</h3>
+            <p>
+              Explore traditional botanical knowledge, AI-generated remedy cards, cultural folklore,
+              nutrition cards, community learning, and product sourcing in one trusted space.
+            </p>
+            <div class="hero-actions">
+              <button type="button" data-tab="library">Explore Library</button>
+              <button type="button" data-tab="capture">Ask the Apothecary</button>
+            </div>
+          </div>
+
+          <div class="feature-list">
+            <article>
+              <h4>Plant Library</h4>
+              <p>Medicinal plants with aliases, origin, images, traditional uses, safety notes, and evidence levels.</p>
+            </article>
+            <article>
+              <h4>AI Apothecary</h4>
+              <p>Generate remedy, folklore, nutrition, or plant cards from symptoms, ingredients, names, or notes.</p>
+            </article>
+            <article>
+              <h4>Save & Share</h4>
+              <p>Cards are designed for saving, WhatsApp/social sharing, and future public/private libraries.</p>
+            </article>
+          </div>
+        </section>
+
+        <section id="capture" class="tab">
+          <div class="section-heading">
+            <h3>Create Plantinel Card</h3>
+            <p>Use a symptom, plant name, local alias, photo note, URL, or pasted text.</p>
+          </div>
+
+          <div class="mode-tabs" role="tablist" aria-label="Capture mode">
+            <button type="button" class="selected" data-mode="symptom">Symptom</button>
+            <button type="button" data-mode="plant">Plant</button>
+            <button type="button" data-mode="photo">Photo</button>
+            <button type="button" data-mode="text">Paste Text</button>
+          </div>
+
+          <label class="input-card">
+            <span id="inputLabel">Describe your symptom</span>
+            <textarea id="captureInput" placeholder="Example: I have a dry cough and sore throat..."></textarea>
+          </label>
+
+          <button id="generateCard" class="primary-button" type="button">Generate Plantinel Card</button>
+
+          <div class="chips" aria-label="Common inputs">
+            <button type="button" data-example="dry cough and sore throat">Dry cough</button>
+            <button type="button" data-example="trouble sleeping">Trouble sleeping</button>
+            <button type="button" data-example="Kopto from Niger">Kopto</button>
+          </div>
+
+          <div id="generatedCard" class="generated-card" aria-live="polite"></div>
+        </section>
+
+        <section id="library" class="tab">
+          <div class="section-heading">
+            <h3>Plant Library</h3>
+            <p>African plants first, searchable by English, French, scientific, or local names.</p>
+          </div>
+          <div class="search-row">
+            <input id="librarySearch" placeholder="Search plants, aliases, uses..." />
+          </div>
+          <div id="plantGrid" class="plant-grid"></div>
+        </section>
+
+        <section id="remedies" class="tab">
+          <div class="section-heading">
+            <h3>Moringa Remedies</h3>
+            <p>Traditional preparations, nutrition cards, and clearly labeled evidence.</p>
+          </div>
+          <div id="remedyList" class="remedy-list"></div>
+        </section>
+
+        <section id="explore" class="tab">
+          <div class="section-heading">
+            <h3>Explore</h3>
+            <p>Browse by card type, purpose, tradition, evidence, and community knowledge.</p>
+          </div>
+          <div id="exploreGrid" class="feature-list compact"></div>
+        </section>
+
+        <section id="community" class="tab">
+          <div class="section-heading">
+            <h3>Community</h3>
+            <p>Personal experiences, cultural traditions, folklore stories, and questions should be submitted for review.</p>
+          </div>
+          <div class="community-card">
+            <span>Pending moderation</span>
+            <h4>My family uses Kopto as tea in Niger</h4>
+            <p>Community testimony is useful, but it stays separate from clinical or research-backed content.</p>
+          </div>
+        </section>
+
+        <section id="journal" class="tab">
+          <div class="section-heading">
+            <h3>Remedy Journal</h3>
+            <p>Track symptoms, remedies used, outcomes, and notes for personal learning over time.</p>
+          </div>
+          <div class="journal-card">
+            <h4>Example entry</h4>
+            <p><strong>Symptoms:</strong> dry cough</p>
+            <p><strong>Remedy:</strong> marshmallow root infusion</p>
+            <p><strong>Result:</strong> pending user review</p>
+          </div>
+        </section>
+
+        <nav class="bottom-nav" aria-label="Bottom navigation">
+          <button type="button" data-tab="home" class="active">Home</button>
+          <button type="button" data-tab="capture">Capture</button>
+          <button type="button" data-tab="library">Library</button>
+          <button type="button" data-tab="remedies">Remedies</button>
+          <button type="button" data-tab="explore">Explore</button>
+        </nav>
+      </section>
+
+      <aside class="card-preview" aria-label="Featured plant card">
+        <div class="plant-hero moringa-hero">
+          <div class="source-pill">AI fallback image allowed</div>
+        </div>
+        <div class="detail-card">
+          <p class="eyebrow">Featured Plant Card</p>
+          <h2>Moringa</h2>
+          <p class="latin">Moringa oleifera</p>
+          <div class="tags">
+            <span>Kopto · Niger</span>
+            <span>Medicinal</span>
+            <span>Nutrition</span>
+          </div>
+          <section>
+            <h3>Traditional Uses</h3>
+            <p>Used traditionally as a nutrient-rich plant for daily wellness, tea preparations, and food support.</p>
+          </section>
+          <section class="notice">
+            <h3>Safety</h3>
+            <p>Educational only. Consult a qualified professional before use, especially with medication, pregnancy, or chronic illness.</p>
+          </section>
+          <section class="commerce-card">
+            <p class="eyebrow">Plantinel Store first</p>
+            <h3>Organic Moringa Tea Bags</h3>
+            <p>Kopto from Niger, shipped from the UK · 250g · £10.00</p>
+            <button type="button">Notify / Buy</button>
+          </section>
+          <section class="legal-card">
+            <h3>Required Live-Site Guardrails</h3>
+            <p>Terms, privacy, medical disclaimer, affiliate disclosure, source labels, and moderation status should remain visible and easy to reach.</p>
+          </section>
+        </div>
+      </aside>
+    </main>
+
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>
